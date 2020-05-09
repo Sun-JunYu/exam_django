@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,re_path
 from django.views.static import serve
-from myapp.views import Register,Login,Upload
+from myapp.views import Register,Login,Upload,Youpaiyun
 
 urlpatterns = [
 #定义超链接路由
@@ -26,4 +26,6 @@ urlpatterns = [
     path('login/',Login.as_view()),
     #上传路由
     path('upload/', Upload.as_view()),
+    # 又拍云
+    path('youpai/',Youpaiyun.as_view()),
 ]

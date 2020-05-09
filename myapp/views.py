@@ -20,6 +20,7 @@ from django_test.settings import UPLOAD_ROOT
 from myapp.models import User
 
 # Create your views here.
+
 # 登录接口
 class Login(APIView):
 
@@ -44,7 +45,7 @@ class Login(APIView):
                 'code':403,
                 'message':'您的用户名或密码错误，请重新输入'
             })
-        
+
 
 # 注册接口
 class Register(APIView):
@@ -112,3 +113,17 @@ class Upload(APIView):
         user.save()
         # 返回文件名
         return Response({'filename': myfile.name, 'message': '图片上传成功'})
+
+#又拍云
+import upyun
+class Youpaiyun(APIView):
+    def get(self,request):
+		up = upyun.UpYun('md-admin',username='a2925087209',password='by0sFyYQ62GfZSIqCPVRXJLHlierRJsT')
+    	up.delete('/kaoshi/jwt流程图.png')
+		try:
+			up.get('/kaoshi/jwt流程图.png')
+		except:
+			return Response({
+				"code":200,
+				'message':'删除成功'
+			})
