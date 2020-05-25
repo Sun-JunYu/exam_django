@@ -113,17 +113,3 @@ class Upload(APIView):
         user.save()
         # 返回文件名
         return Response({'filename': myfile.name, 'message': '图片上传成功'})
-
-#又拍云
-import upyun
-class Youpaiyun(APIView):
-    def get(self,request):
-		up = upyun.UpYun('md-admin',username='a2925087209',password='by0sFyYQ62GfZSIqCPVRXJLHlierRJsT')
-    	up.delete('/kaoshi/jwt流程图.png')
-		try:
-			up.get('/kaoshi/jwt流程图.png')
-		except:
-			return Response({
-				"code":200,
-				'message':'删除成功'
-			})
